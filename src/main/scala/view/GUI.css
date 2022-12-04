@@ -1,0 +1,33 @@
+#pane {
+    -fx-background-color: linear-gradient(to right top, #c900ff, #00ffe2);
+}
+
+#unselectedWall {
+    -fx-background-color: transparent;
+}
+
+#unselectedWall:hover {
+    -fx-background-color: white;
+    -fx-opacity: 0.2;
+}
+
+#selectedWall {
+    -fx-background-color: black;
+    -fx-opacity: 0.7;
+}
+
+
+#whitePawn {
+    -fx-background-image: url('WhitePawn.png');
+    -fx-background-size: cover;
+
+}
+
+#blackPawn {
+    -fx-background-image: url(' BlackPawn.png');
+    -fx-background-size: cover;
+
+}
+
+#regularField {
+}
