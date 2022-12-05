@@ -1,27 +1,35 @@
-package controller
+package controller.controllerComponent.controllerBaseImpl
 
-import controller.GameStatus.*
-import model.*
-import util.*
+import controller.controllerComponent.ControllerInterface
+import controller.controllerComponent.controllerBaseImpl.GameStatus.*
+import model.BoardInterface
+import model.boardComponent.boardBaseImpl.{Field, Player, Player1, Player2}
 import util.Event.{FIELDCHANGED, QUIT}
+import util.{Observable, UndoManager}
 
 import scala.collection.mutable
-import scala.collection.mutable.Map
 
-class Controller(var board: Quoridorboard[Field]) extends Observable {
+class Controller(var board: BoardInterface) extends ControllerInterface with Observable {
 
   private val undoManager: UndoManager = new UndoManager
-  var gameStatus: GameStatus.Value = IDLE
-  private var playerCount: Int = 2
+  var gameStatus: GameStatus.Value = GameStatus.MOVED
   private var currentPlayer: Int = 0
   private var playerWallCount = mutable.Map(0 -> 10, 1 -> 10)
+
+  def boardToString: String = board.toString
+
+  def boardSize: Int = board.size
+
+  def cell(row: Int, col: Int): Field = board.cell(row, col)
+
+  def isSet(row: Int, col: Int): Boolean = board.isSet(row, col)
+
+  def quit(): Boolean = { notifyObservers(QUIT); true }
 
   def createEmptyBoard(size: Int): Boolean = {
     size match {
       case 2 =>
-        board = BoardCreator.createBoardWith2Players()
-        playerCount = 2
-
+        board = board.createBoardWith2Players()
 
       case _: Int => false
     }
@@ -29,8 +37,6 @@ class Controller(var board: Quoridorboard[Field]) extends Observable {
     notifyObservers(FIELDCHANGED)
     true
   }
-
-  def boardToString: String = board.toString()
 
   def movePawn(row: Int, col: Int): Unit = {
     val player = returnPlayerById(currentPlayer)
@@ -40,23 +46,8 @@ class Controller(var board: Quoridorboard[Field]) extends Observable {
       cyclePlayers()
       gameStatus = MOVED
       notifyObservers(FIELDCHANGED)
-    else gameStatus = ILLEGAL_MOVE
+    else gameStatus = GameStatus.MOVED
 
-  }
-
-  private def playerMove(row: Int, col: Int, player: Player): Unit = {
-
-    undoManager.doStep(new MoveCommand(row, col, player, this))
-  }
-
-  private def cyclePlayers(): Unit = currentPlayer = (currentPlayer + 1) % 2
-
-
-  private def returnPlayerById(playerID: Int): Player = {
-    playerID match {
-      case 0 => Player1()
-      case 1 => Player2()
-    }
   }
 
   def setWall(row: Int, column: Int): Unit = {
@@ -67,12 +58,6 @@ class Controller(var board: Quoridorboard[Field]) extends Observable {
       cyclePlayerAndSetWall(wallsInPossession)
     else gameStatus = NO_MORE_WALLS
 
-  }
-
-  private def cyclePlayerAndSetWall(wallsInPossession: Int): Unit = {
-    playerWallCount.update(currentPlayer, wallsInPossession - 1)
-    cyclePlayers()
-    notifyObservers(FIELDCHANGED)
   }
 
   def undo(): Unit = {
@@ -89,14 +74,22 @@ class Controller(var board: Quoridorboard[Field]) extends Observable {
     notifyObservers(FIELDCHANGED)
   }
 
-  def boardSize: Int = board.size
+  private def playerMove(row: Int, col: Int, player: Player): Unit = {
 
-  // def statusText: String = GameStatus.message(gameStatus)
-  def cell(row: Int, col: Int): Field = board.cell(row, col)
+    undoManager.doStep(new MoveCommand(row, col, player, this))
+  }
 
-  def isSet(row: Int, col: Int): Boolean = board.isSet(row, col)
+  private def returnPlayerById(playerID: Int): Player = {
+    playerID match {
+      case 0 => Player1()
+      case 1 => Player2()
+    }
+  }
 
-  def isGiven(row: Int, col: Int): Boolean = board.isGiven(row, col)
-
-  def quit(): Unit = notifyObservers(QUIT)
+  private def cyclePlayerAndSetWall(wallsInPossession: Int): Unit = {
+    playerWallCount.update(currentPlayer, wallsInPossession - 1)
+    cyclePlayers()
+    notifyObservers(FIELDCHANGED)
+  }
+  private def cyclePlayers(): Unit = currentPlayer = (currentPlayer + 1) % 2
 }

@@ -1,12 +1,14 @@
 package view
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 import scalafx.geometry.Insets
 import scalafx.scene.control.Button
 import scalafx.scene.layout.{Background, BackgroundFill}
 import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.Rectangle
 import util.{Event, Observer}
+
+
 
 sealed trait Wall extends Button {
   visible = true

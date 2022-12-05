@@ -1,11 +1,13 @@
 package view
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 import scalafx.scene.control.Button
 import scalafx.scene.shape.Rectangle
 import util.{Event, Observer}
 
-final case class BlankSpace(controller: Controller, row: Int, col: Int) extends Button with Observer {
+final case class BlankSpace(controller: Controller, row: Int, col: Int)
+    extends Button
+    with Observer {
   controller.add(this)
   minWidth = 20
   maxWidth = 50

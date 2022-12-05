@@ -1,7 +1,6 @@
 package view
 
-import controller.{Controller, GameStatus}
-import model.Move
+import controller.controllerComponent.controllerBaseImpl.{Controller, GameStatus}
 import util.{Event, Observer}
 
 import scala.annotation.tailrec
@@ -20,22 +19,31 @@ class TUI(controller: Controller) extends Observer {
     }
   }
 
+  private def printTUI(): Unit = {
+    println(controller.boardToString)
+    println(GameStatus.message(controller.gameStatus))
+  }
+
   def start(): Unit = {
     loop()
+  }
+
+  private def parseMoveFromInput(input: String): Unit = {
+
+    processInputLine(input) match {
+      case Some(Move("Pawn", row, col)) => controller.movePawn(row, col)
+      case Some(Move("Wall", row, col)) => controller.setWall(row, col)
+      case _ =>
+    }
   }
 
   @tailrec
   private def loop(): Unit = {
     if (!exit) {
-      val input = readLine()
+      var input = readLine()
       parseMoveFromInput(input)
       loop()
     }
-  }
-
-  private def printTUI(): Unit = {
-    println(controller.boardToString)
-    println(GameStatus.message(controller.gameStatus))
   }
 
   private def processInputLine(input: String): Option[Move] = {
@@ -44,19 +52,20 @@ class TUI(controller: Controller) extends Observer {
       case "n" => controller.createEmptyBoard(2); None
       case "u" => controller.undo(); None
       case "r" => controller.redo(); None
+      case null => None
       case _ =>
         input.split(" ").toList match {
 
           case row :: col :: Nil =>
             stringToInt(row, col) match {
               case Success(value) => Some(Move("Pawn", value._1, value._2))
-              case Failure(exception) => None
+              case Failure(_) => None
             }
 
-          case wall :: row :: col :: Nil =>
+          case _ :: row :: col :: Nil =>
             stringToInt(row, col) match {
               case Success(value) => Some(Move("Wall", value._1, value._2))
-              case Failure(exception) => None
+              case Failure(_) => None
             }
 
           case _ => None
@@ -67,13 +76,6 @@ class TUI(controller: Controller) extends Observer {
   private def stringToInt(row: String, col: String): Try[(Int, Int)] = {
     Try(row.toInt, col.toInt)
   }
-
-  def parseMoveFromInput(input: String): Unit = {
-
-    processInputLine(input) match {
-      case Some(Move("Pawn", row, col)) => controller.movePawn(row, col)
-      case Some(Move("Wall", row, col)) => controller.setWall(row, col)
-      case _ =>
-    }
-  }
 }
+
+case class Move(piece: String, row: Int, col: Int)

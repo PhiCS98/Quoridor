@@ -1,7 +1,8 @@
 package view
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 import model.*
+import model.boardComponent.boardBaseImpl.BoardCreator
 import scalafx.Includes.observableList2ObservableBuffer
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.*
@@ -13,16 +14,21 @@ import util.*
 
 object GUI extends JFXApp3 {
   val controller = new Controller(BoardCreator.createBoardWith2Players())
-  val tui = new TUI(controller)
+  private val tui = new TUI(controller)
 
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
       title = "Quoridor"
       scene = new Scene {
-        stylesheets += getClass.getResource("GUI.css").toExternalForm
+        stylesheets += getClass.getResource("gui.css").toExternalForm
         content = new GridPane() {
           id = "pane"
-          border = new Border(new BorderStroke(Color.Black, BorderStrokeStyle.Solid, CornerRadii.Empty, new BorderWidths(10)))
+          border = new Border(
+            new BorderStroke(
+              Color.Black,
+              BorderStrokeStyle.Solid,
+              CornerRadii.Empty,
+              new BorderWidths(10)))
           for {
             i <- 0 until controller.boardSize
             j <- 0 until controller.boardSize
@@ -47,5 +53,4 @@ object GUI extends JFXApp3 {
     cliThread.setDaemon(true)
     cliThread.start()
   }
-
 }

@@ -1,13 +1,13 @@
 package view
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 import javafx.scene.layout.HBox
 import model.*
+import model.boardComponent.boardBaseImpl.{Player1, Player2}
 import scalafx.scene.control.Button
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Rectangle
 import util.{Event, Observer}
-
 
 final case class Field(controller: Controller, row: Int, col: Int) extends Button with Observer {
 
