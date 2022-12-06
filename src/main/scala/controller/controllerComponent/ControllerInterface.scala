@@ -1,10 +1,12 @@
 package controller.controllerComponent
 
-import model.boardComponent.boardBaseImpl.Field
+import controller.controllerComponent.GameStatus.GameStatus
+import model.boardComponent.boardBaseImpl.{Field, Piece, Player}
 import util.Observable
 
 trait ControllerInterface extends Observable {
-  def createEmptyBoard(size: Int): Boolean
+
+  def retrieveGameStatus: GameStatus
 
   def movePawn(row: Int, col: Int): Unit
 
@@ -23,5 +25,7 @@ trait ControllerInterface extends Observable {
   def isSet(row: Int, col: Int): Boolean
 
   def quit(): Boolean
+
+  def retrievePlayerAtPosition(row: Int, col: Int): Option[Player]
 
 }

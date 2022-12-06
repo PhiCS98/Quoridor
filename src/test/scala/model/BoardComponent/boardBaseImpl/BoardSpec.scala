@@ -25,13 +25,13 @@ class BoardSpec
     "have a method to return a new empty board" in {
       val board = BoardCreator.createEmptyBoard()
 
-      board.createEmptyBoard() should be(board)
+      Board.createEmptyBoard() should be(board)
     }
 
     "have a method to return a new board with 4 players" in {
       val board = BoardCreator.createBoardWith4Players()
 
-      board.createBoardWith4Players() should be(board)
+      Board.createBoardWith4Players() should be(board)
     }
 
     "have a constructor to create a quoridor board" in {

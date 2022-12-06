@@ -19,5 +19,3 @@ lazy val root = project
         .map(m => "org.openjfx" % s"javafx-$m" % "19" classifier osName)
     },
     libraryDependencies += "org.scalafx" %% "scalafx" % "19.0.0-R30")
-
-Compile / mainClass := Some("view.GUI")

@@ -1,15 +1,17 @@
-package view
+package view.guiComponent.guiBaseImpl
 
-import controller.controllerComponent.controllerBaseImpl.Controller
+import controller.controllerComponent.ControllerInterface
 import javafx.scene.layout.HBox
-import model.*
+import model.boardComponent.boardBaseImpl
 import model.boardComponent.boardBaseImpl.{Player1, Player2}
 import scalafx.scene.control.Button
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Rectangle
 import util.{Event, Observer}
 
-final case class Field(controller: Controller, row: Int, col: Int) extends Button with Observer {
+final case class Field(controller: ControllerInterface, row: Int, col: Int)
+    extends Button
+    with Observer {
 
   controller.add(this)
   minWidth = 60
@@ -23,11 +25,14 @@ final case class Field(controller: Controller, row: Int, col: Int) extends Butto
   onAction = _ => controller.movePawn(row, col)
 
   private def setId(): Unit = {
-    if (controller.board.cell(row, col).content.isDefined) {
-      controller.board.cell(row, col).content.get.returnPlayer() match {
-        case Player1() => id = "blackPawn"
-        case Player2() => id = "whitePawn"
-        case _ =>
+    if (controller.isSet(row, col)) {
+      controller.retrievePlayerAtPosition(row, col) match {
+        case Some(value) =>
+          value match {
+            case Player1() => id = "blackPawn"
+            case Player2() => id = "whitePawn"
+          }
+        case None =>
       }
     } else {
       id = "regularField"

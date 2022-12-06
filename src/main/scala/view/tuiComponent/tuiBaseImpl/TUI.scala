@@ -1,13 +1,14 @@
-package view
+package view.tuiComponent.tuiBaseImpl
 
-import controller.controllerComponent.controllerBaseImpl.{Controller, GameStatus}
+import controller.controllerComponent.{ControllerInterface, GameStatus}
 import util.{Event, Observer}
+import view.tuiComponent.TUIInterface
 
 import scala.annotation.tailrec
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 
-class TUI(controller: Controller) extends Observer {
+class TUI(controller: ControllerInterface) extends TUIInterface with Observer {
   controller.add(this)
   val size = 9
   private var exit = false
@@ -21,10 +22,12 @@ class TUI(controller: Controller) extends Observer {
 
   private def printTUI(): Unit = {
     println(controller.boardToString)
-    println(GameStatus.message(controller.gameStatus))
+    println(GameStatus.message(controller.retrieveGameStatus))
   }
 
   def start(): Unit = {
+    printTitle()
+    printTUI()
     loop()
   }
 
@@ -40,7 +43,7 @@ class TUI(controller: Controller) extends Observer {
   @tailrec
   private def loop(): Unit = {
     if (!exit) {
-      var input = readLine()
+      val input = readLine()
       parseMoveFromInput(input)
       loop()
     }
@@ -49,7 +52,6 @@ class TUI(controller: Controller) extends Observer {
   private def processInputLine(input: String): Option[Move] = {
     input match {
       case "q" => controller.quit(); None
-      case "n" => controller.createEmptyBoard(2); None
       case "u" => controller.undo(); None
       case "r" => controller.redo(); None
       case null => None
@@ -72,6 +74,16 @@ class TUI(controller: Controller) extends Observer {
         }
     }
   }
+
+  private def printTitle(): Unit = println("""
+      |██████╗ ██╗   ██╗ ██████╗ ██████╗ ██╗██████╗  ██████╗ ██████╗
+      |██╔═══██╗██║   ██║██╔═══██╗██╔══██╗██║██╔══██╗██╔═══██╗██╔══██╗
+      |██║   ██║██║   ██║██║   ██║██████╔╝██║██║  ██║██║   ██║██████╔╝
+      |██║▄▄ ██║██║   ██║██║   ██║██╔══██╗██║██║  ██║██║   ██║██╔══██╗
+      |╚██████╔╝╚██████╔╝╚██████╔╝██║  ██║██║██████╔╝╚██████╔╝██║  ██║
+      | ╚══▀▀═╝  ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝
+      |
+      |""".stripMargin)
 
   private def stringToInt(row: String, col: String): Try[(Int, Int)] = {
     Try(row.toInt, col.toInt)

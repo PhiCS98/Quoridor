@@ -1,4 +1,4 @@
-package controller.controllerComponent.controllerBaseImpl
+package controller.controllerComponent
 
 object GameStatus extends Enumeration {
   type GameStatus = Value

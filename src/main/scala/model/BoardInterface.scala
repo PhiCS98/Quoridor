@@ -19,12 +19,8 @@ trait BoardInterface {
 
   def returnPositionOfPlayerPawn(player: Player): Option[(Int, Int)]
 
-  def createBoardWith2Players(): Board[Field]
-
-  def createEmptyBoard(): Board[Field]
-
-  def createBoardWith4Players(): Board[Field]
-
   def toString: String
+
+  def returnPlayerOfPosition(row: Int, col: Int): Option[Player]
 
 }

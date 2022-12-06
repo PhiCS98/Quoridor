@@ -1,11 +1,11 @@
-package view
+package view.guiComponent.guiBaseImpl
 
-import controller.controllerComponent.controllerBaseImpl.Controller
+import controller.controllerComponent.ControllerInterface
 import scalafx.scene.control.Button
 import scalafx.scene.shape.Rectangle
 import util.{Event, Observer}
 
-final case class BlankSpace(controller: Controller, row: Int, col: Int)
+final case class BlankSpace(controller: ControllerInterface, row: Int, col: Int)
     extends Button
     with Observer {
   controller.add(this)
@@ -20,7 +20,7 @@ final case class BlankSpace(controller: Controller, row: Int, col: Int)
   override def update(e: Event): Unit = setId()
 
   private def setId(): Unit = {
-    if (controller.board.cell(row, col).content.isDefined) {
+    if (controller.isSet(row, col)) {
       id = "selectedWall"
       visible = true
     } else {

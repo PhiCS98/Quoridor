@@ -14,6 +14,12 @@ case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface
 
   def cell(row: Int, col: Int): Field = rows(row)(col)
 
+  override def returnPlayerOfPosition(row: Int, col: Int): Option[Player] =
+    cell(row, col).content.isDefined match {
+      case true => Some(cell(row, col).content.get.returnPlayer())
+      case fals => None
+    }
+
   def this(size: Int) =
     this(Vector.tabulate(size * 2 - 1, size * 2 - 1) { (row, col) =>
       (row % 2, col % 2) match {
@@ -140,16 +146,6 @@ case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface
       .toVector
   }
 
-  override def createEmptyBoard(): Board[Field] = BoardCreator.createEmptyBoard()
-
-  override def createBoardWith2Players(): Board[Field] = {
-    BoardCreator.createBoardWith2Players()
-  }
-
-  override def createBoardWith4Players(): Board[Field] = {
-    BoardCreator.createBoardWith4Players()
-  }
-
   override def toString: String = {
     var temp = ""
     for (row <- this.rows) {
@@ -159,5 +155,17 @@ case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface
       temp = temp ++ "\n"
     }
     temp
+  }
+}
+
+object Board {
+  def createEmptyBoard(): Board[Field] = BoardCreator.createEmptyBoard()
+
+  def createBoardWith2Players(): Board[Field] = {
+    BoardCreator.createBoardWith2Players()
+  }
+
+  def createBoardWith4Players(): Board[Field] = {
+    BoardCreator.createBoardWith4Players()
   }
 }

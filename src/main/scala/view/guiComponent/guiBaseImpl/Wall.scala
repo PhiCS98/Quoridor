@@ -1,6 +1,6 @@
 package view
 
-import controller.controllerComponent.controllerBaseImpl.Controller
+import controller.controllerComponent.ControllerInterface
 import scalafx.geometry.Insets
 import scalafx.scene.control.Button
 import scalafx.scene.layout.{Background, BackgroundFill}
@@ -8,13 +8,13 @@ import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.Rectangle
 import util.{Event, Observer}
 
-
-
 sealed trait Wall extends Button {
   visible = true
 }
 
-case class VerticalWall(controller: Controller, row: Int, col: Int) extends Wall with Observer {
+case class VerticalWall(controller: ControllerInterface, row: Int, col: Int)
+    extends Wall
+    with Observer {
   controller.add(this)
   id = "unselectedWall"
   minHeight = 30
@@ -29,7 +29,7 @@ case class VerticalWall(controller: Controller, row: Int, col: Int) extends Wall
 
   private def setId(): Unit = {
 
-    if (controller.board.cell(row, col).content.isDefined) {
+    if (controller.isSet(row, col)) {
       id = "selectedWall"
     } else {
       id = "unselectedWall"
@@ -39,7 +39,9 @@ case class VerticalWall(controller: Controller, row: Int, col: Int) extends Wall
   visible = true
 }
 
-case class HorizontalWall(controller: Controller, row: Int, col: Int) extends Wall with Observer {
+case class HorizontalWall(controller: ControllerInterface, row: Int, col: Int)
+    extends Wall
+    with Observer {
   controller.add(this)
   id = "unselectedWall"
   minHeight = 60
@@ -53,7 +55,7 @@ case class HorizontalWall(controller: Controller, row: Int, col: Int) extends Wa
   override def update(e: Event): Unit = setId()
 
   private def setId(): Unit = {
-    if (controller.board.cell(row, col).content.isDefined) {
+    if (controller.isSet(row, col)) {
       id = "selectedWall"
     } else {
       id = "unselectedWall"
