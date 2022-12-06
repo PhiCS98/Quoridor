@@ -4,10 +4,12 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "Quoridor",
-    version := "0.1.0-SNAPSHOT",
+    version := "0.10.0-SNAPSHOT",
     scalaVersion := scala3Version,
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test",
+    libraryDependencies += "com.google.inject" % "guice" % "5.1.0",
+    libraryDependencies += "net.codingwell" %% "scala-guice" % "5.1.0" cross CrossVersion.for3Use2_13,
     libraryDependencies ++= {
       lazy val osName = System.getProperty("os.name") match {
         case n if n.startsWith("Linux") => "linux"

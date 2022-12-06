@@ -1,7 +1,7 @@
 package controller.ControllerComponent.controllerBaseImpl
 
-import controller.controllerComponent.controllerBaseImpl.Controller
-import model.boardComponent.boardBaseImpl.{Board, BoardCreator, PieceField}
+import Quoridor.controller.controllerComponent.controllerBaseImpl.Controller
+import Quoridor.model.boardComponent.boardBaseImpl.{Board, BoardCreator, PieceField}
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec

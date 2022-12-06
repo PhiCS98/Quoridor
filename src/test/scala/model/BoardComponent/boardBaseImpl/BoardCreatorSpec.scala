@@ -1,7 +1,7 @@
 package model.BoardComponent.boardBaseImpl
 
-import model.boardComponent.boardBaseImpl
-import model.boardComponent.boardBaseImpl.*
+import Quoridor.model.boardComponent.boardBaseImpl
+import Quoridor.model.boardComponent.boardBaseImpl.*
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
