@@ -2,6 +2,7 @@ package Quoridor.model.boardComponent.boardBaseImpl
 
 import Quoridor.model.*
 import Quoridor.model.boardComponent.boardBaseImpl
+import Quoridor.model.boardComponent.BoardInterface
 import Quoridor.model.boardComponent.boardBaseImpl.BoardCreator.createBoardWith2Players
 
 case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface {

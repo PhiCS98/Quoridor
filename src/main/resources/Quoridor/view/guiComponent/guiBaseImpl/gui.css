@@ -1,5 +1,6 @@
 #pane {
-    -fx-background-color: linear-gradient(to right top, #c900ff, #00ffe2);
+    /*-fx-background-color: linear-gradient(to right top, #c900ff, #00ffe2);*/
+    -fx-background-color: linear-gradient(to right top, #845EC2, #D65DB1,#FF6F91,#FF9671,#FFC75F,#F9F871);
 }
 
 #unselectedWall {
@@ -8,25 +9,32 @@
 
 #unselectedWall:hover {
     -fx-background-color: white;
-    -fx-opacity: 0.2;
+    -fx-opacity: 0.5;
 }
 
 #selectedWall {
-    -fx-background-color: black;
+    -fx-background-color: rgba(26, 26, 38, 1);
     -fx-opacity: 0.7;
 }
 
 
 #whitePawn {
-    -fx-background-image: url('WhitePawn.png');
+    -fx-background-image: url('WhitePawn2.png');
+    -fx-background-color: rgba(47, 72, 88, .7);
     -fx-background-size: cover;
-
 }
 
 #blackPawn {
-    -fx-background-image: url('BlackPawn.png');
+    -fx-background-image: url('BlackPawn2.png');
+    -fx-background-color: rgba(47, 72, 88, .7);
     -fx-background-size: cover;
-
 }
 
-#regularField {}
+#regularField {
+    -fx-background-color: rgba(47, 72, 88, .7);
+}
+
+#regularField:hover {
+    -fx-background-color: white;
+    -fx-opacity: 0.5;
+}

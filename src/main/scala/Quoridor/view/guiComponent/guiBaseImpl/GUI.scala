@@ -37,8 +37,8 @@ class GUI(val controller: ControllerInterface) extends JFXApp3 {
               val redo = new MenuItem("redo")
               val undo = new MenuItem("undo")
 
-              redo.onAction = (_) => controller.redo()
-              undo.onAction = (_) => controller.undo()
+              redo.onAction = _ => controller.redo()
+              undo.onAction = _ => controller.undo()
 
               val editMenu = new Menu("edit")
               editMenu.items = List(redo, undo)
@@ -46,12 +46,12 @@ class GUI(val controller: ControllerInterface) extends JFXApp3 {
             }
             center = new GridPane() {
               id = "pane"
-              border = new Border(
-                new BorderStroke(
-                  Color.Black,
-                  BorderStrokeStyle.Solid,
-                  CornerRadii.Empty,
-                  new BorderWidths(10)))
+              // border = new Border(
+              // new BorderStroke(
+              //   Color.Black,
+              //   BorderStrokeStyle.Solid,
+              //   CornerRadii.Empty,
+              //   new BorderWidths(5)))
               for {
                 i <- 0 until controller.boardSize
                 j <- 0 until controller.boardSize

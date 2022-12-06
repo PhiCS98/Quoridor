@@ -2,7 +2,6 @@ package Quoridor.view.guiComponent.guiBaseImpl
 
 import Quoridor.controller.controllerComponent.ControllerInterface
 import javafx.scene.layout.HBox
-import Quoridor.model.boardComponent.boardBaseImpl
 import Quoridor.model.boardComponent.boardBaseImpl.{Player1, Player2}
 import scalafx.scene.control.Button
 import scalafx.scene.paint.Color

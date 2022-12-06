@@ -1,7 +1,7 @@
 package Quoridor.controller.controllerComponent.controllerBaseImpl
 
 import Quoridor.controller.controllerComponent.ControllerInterface
-import Quoridor.model.BoardInterface
+import Quoridor.model.boardComponent.BoardInterface
 import Quoridor.model.boardComponent.boardBaseImpl.{Field, Player}
 import Quoridor.util.Command
 
