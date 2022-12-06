@@ -1,4 +1,4 @@
-package controller
+package controller.controllerComponent
 
 object GameStatus extends Enumeration {
   type GameStatus = Value
@@ -12,8 +12,7 @@ object GameStatus extends Enumeration {
     UNDO -> "Undone one step",
     REDO -> "Redone one step",
     ILLEGAL_MOVE -> "This move was illegal",
-    NO_MORE_WALLS -> "Player does not have enough walls "
-  )
+    NO_MORE_WALLS -> "Player does not have enough walls ")
 
   def message(gameStatus: GameStatus): String = {
     map(gameStatus)

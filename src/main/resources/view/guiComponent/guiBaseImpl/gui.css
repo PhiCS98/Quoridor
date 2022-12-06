@@ -24,10 +24,9 @@
 }
 
 #blackPawn {
-    -fx-background-image: url(' BlackPawn.png');
+    -fx-background-image: url('BlackPawn.png');
     -fx-background-size: cover;
 
 }
 
-#regularField {
-}
+#regularField {}

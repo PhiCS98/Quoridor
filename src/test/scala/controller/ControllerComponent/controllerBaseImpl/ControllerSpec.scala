@@ -1,7 +1,7 @@
-package controller
+package controller.ControllerComponent.controllerBaseImpl
 
-import controller.Controller
-import model.BoardCreator
+import controller.controllerComponent.controllerBaseImpl.Controller
+import model.boardComponent.boardBaseImpl.{Board, BoardCreator, PieceField}
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
@@ -33,7 +33,6 @@ class ControllerSpec extends AnyWordSpec with should.Matchers {
         controller.redo()
         controller.board.isSet(3, 8) should be(true)
 
-        controller.createEmptyBoard(9)
         controller.undo()
         controller.undo()
         controller.board should be(smallBoard)
@@ -43,8 +42,18 @@ class ControllerSpec extends AnyWordSpec with should.Matchers {
         val controller2 = new Controller(smallBoard)
         controller2.boardToString should be(expected)
       }
-      "have a method to create a new quoridor board" in {
-        controller.createEmptyBoard(2) should be(true)
+
+      "have a method to return the size of the board associated with the controller" in {
+        controller.boardSize should be(17)
+      }
+      "have a method to return a field of the board associated with the controller" in {
+        controller.cell(0, 0) should be(PieceField(None))
+      }
+      "have a method to check if a field of the board associated with the controller is set" in {
+        controller.isSet(0, 0) should be(false)
+      }
+      "have a method to notify Observers to quit" in {
+        controller.quit() should be(true)
       }
     }
   }

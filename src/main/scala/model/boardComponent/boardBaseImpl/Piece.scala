@@ -1,4 +1,6 @@
-package model
+package model.boardComponent.boardBaseImpl
+
+import model.boardComponent.boardBaseImpl
 
 abstract class Piece(player: Player):
   def returnPlayer(): Player = this.player
