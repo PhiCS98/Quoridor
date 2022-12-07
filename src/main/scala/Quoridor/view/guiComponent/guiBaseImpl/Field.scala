@@ -8,7 +8,7 @@ import scalafx.scene.paint.Color
 import scalafx.scene.shape.Rectangle
 import Quoridor.util.{Event, Observer}
 
-final case class Field(controller: ControllerInterface, row: Int, col: Int)
+final case class Field(row: Int, col: Int)(using controller: ControllerInterface)
     extends Button
     with Observer {
 

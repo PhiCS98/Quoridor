@@ -24,7 +24,7 @@ import scalafx.beans.property.ObjectProperty
 import javafx.event
 import Quoridor.controller.controllerComponent.ControllerInterface
 
-class GUI(val controller: ControllerInterface) extends JFXApp3 {
+class GUI()(using controller: ControllerInterface) extends JFXApp3 {
 
   override def start(): Unit = {
     stage = new JFXApp3.PrimaryStage {
@@ -57,10 +57,10 @@ class GUI(val controller: ControllerInterface) extends JFXApp3 {
                 j <- 0 until controller.boardSize
               } {
                 (i % 2, j % 2) match {
-                  case (0, 0) => add(Field(controller, j, i), i, j)
-                  case (0, 1) => add(VerticalWall(controller, j, i), i, j)
-                  case (1, 0) => add(HorizontalWall(controller, j, i), i, j)
-                  case (1, 1) => add(BlankSpace(controller, j, i), i, j)
+                  case (0, 0) => add(Field(j, i), i, j)
+                  case (0, 1) => add(VerticalWall(j, i), i, j)
+                  case (1, 0) => add(HorizontalWall(j, i), i, j)
+                  case (1, 1) => add(BlankSpace(j, i), i, j)
                 }
               }
               visible = true

@@ -5,7 +5,7 @@ import scalafx.scene.control.Button
 import scalafx.scene.shape.Rectangle
 import Quoridor.util.{Event, Observer}
 
-final case class BlankSpace(controller: ControllerInterface, row: Int, col: Int)
+final case class BlankSpace(row: Int, col: Int)(using controller: ControllerInterface)
     extends Button
     with Observer {
   controller.add(this)

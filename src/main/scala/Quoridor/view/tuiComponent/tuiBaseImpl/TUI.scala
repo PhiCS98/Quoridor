@@ -8,7 +8,7 @@ import scala.annotation.tailrec
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 
-class TUI(controller: ControllerInterface) extends TUIInterface with Observer {
+class TUI()(using controller: ControllerInterface) extends TUIInterface with Observer {
   controller.add(this)
   val size = 9
   private var exit = false
@@ -26,6 +26,7 @@ class TUI(controller: ControllerInterface) extends TUIInterface with Observer {
   }
 
   def start(): Unit = {
+    println("Hello world!")
     printTitle()
     printTUI()
     loop()

@@ -12,7 +12,7 @@ sealed trait Wall extends Button {
   visible = true
 }
 
-case class VerticalWall(controller: ControllerInterface, row: Int, col: Int)
+case class VerticalWall(row: Int, col: Int)(using controller: ControllerInterface)
     extends Wall
     with Observer {
   controller.add(this)
@@ -39,7 +39,7 @@ case class VerticalWall(controller: ControllerInterface, row: Int, col: Int)
   visible = true
 }
 
-case class HorizontalWall(controller: ControllerInterface, row: Int, col: Int)
+case class HorizontalWall(row: Int, col: Int)(using controller: ControllerInterface)
     extends Wall
     with Observer {
   controller.add(this)

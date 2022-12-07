@@ -4,15 +4,14 @@ import Quoridor.controller.controllerComponent.controllerBaseImpl.Controller
 import Quoridor.view.tuiComponent.tuiBaseImpl.TUI
 import Quoridor.model.boardComponent.boardBaseImpl.BoardCreator
 import Quoridor.view.guiComponent.guiBaseImpl.GUI
+import Quoridor.controller.controllerComponent.ControllerInterface
 
 @main
 def main(): Unit = {
-  println("Hello world!")
   val controller = new Controller(BoardCreator.createBoardWith2Players())
-  val tui = new TUI(controller)
-  val gui = new GUI(controller)
-
-  gui.main(Array.empty)
+  given ControllerInterface = controller
+  val tui = new TUI
+  val gui = new GUI
 
   val cliThread = new Thread(() => {
     tui.start()
@@ -20,5 +19,7 @@ def main(): Unit = {
   })
   cliThread.setDaemon(true)
   cliThread.start()
+
+  gui.main(Array.empty)
 
 }
