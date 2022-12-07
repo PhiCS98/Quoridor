@@ -1,20 +1,18 @@
-package Quoridor.view
+package Quoridor.view.guiComponent.guiBaseImpl
 
 import Quoridor.controller.controllerComponent.ControllerInterface
+import Quoridor.util.{Event, Observer}
 import scalafx.geometry.Insets
 import scalafx.scene.control.Button
 import scalafx.scene.layout.{Background, BackgroundFill}
 import scalafx.scene.paint.Color.*
 import scalafx.scene.shape.Rectangle
-import Quoridor.util.{Event, Observer}
 
 sealed trait Wall extends Button {
   visible = true
 }
 
-case class VerticalWall(row: Int, col: Int)(using controller: ControllerInterface)
-    extends Wall
-    with Observer {
+case class VerticalWall(row: Int, col: Int)(using controller: ControllerInterface) extends Wall with Observer:
   controller.add(this)
   id = "unselectedWall"
   minHeight = 30
@@ -27,21 +25,15 @@ case class VerticalWall(row: Int, col: Int)(using controller: ControllerInterfac
 
   override def update(e: Event): Unit = setId()
 
-  private def setId(): Unit = {
-
-    if (controller.isSet(row, col)) {
+  private def setId(): Unit =
+    if (controller.isSet(row, col))
       id = "selectedWall"
-    } else {
+    else
       id = "unselectedWall"
-    }
-  }
 
   visible = true
-}
 
-case class HorizontalWall(row: Int, col: Int)(using controller: ControllerInterface)
-    extends Wall
-    with Observer {
+case class HorizontalWall(row: Int, col: Int)(using controller: ControllerInterface) extends Wall with Observer:
   controller.add(this)
   id = "unselectedWall"
   minHeight = 60
@@ -54,13 +46,10 @@ case class HorizontalWall(row: Int, col: Int)(using controller: ControllerInterf
 
   override def update(e: Event): Unit = setId()
 
-  private def setId(): Unit = {
-    if (controller.isSet(row, col)) {
+  private def setId(): Unit =
+    if (controller.isSet(row, col))
       id = "selectedWall"
-    } else {
+    else
       id = "unselectedWall"
-    }
-  }
 
   visible = true
-}

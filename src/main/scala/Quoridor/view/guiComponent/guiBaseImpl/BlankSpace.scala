@@ -1,13 +1,11 @@
 package Quoridor.view.guiComponent.guiBaseImpl
 
 import Quoridor.controller.controllerComponent.ControllerInterface
+import Quoridor.util.{Event, Observer}
 import scalafx.scene.control.Button
 import scalafx.scene.shape.Rectangle
-import Quoridor.util.{Event, Observer}
 
-final case class BlankSpace(row: Int, col: Int)(using controller: ControllerInterface)
-    extends Button
-    with Observer {
+final case class BlankSpace(row: Int, col: Int)(using controller: ControllerInterface) extends Button with Observer:
   controller.add(this)
   minWidth = 20
   maxWidth = 50
@@ -19,12 +17,8 @@ final case class BlankSpace(row: Int, col: Int)(using controller: ControllerInte
 
   override def update(e: Event): Unit = setId()
 
-  private def setId(): Unit = {
-    if (controller.isSet(row, col)) {
+  private def setId(): Unit =
+    if (controller.isSet(row, col))
       id = "selectedWall"
       visible = true
-    } else {
-      id = "unselectedWall"
-    }
-  }
-}
+    else id = "unselectedWall"

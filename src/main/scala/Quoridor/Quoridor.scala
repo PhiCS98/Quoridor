@@ -1,25 +1,26 @@
 package Quoridor
 
-import Quoridor.controller.controllerComponent.controllerBaseImpl.Controller
-import Quoridor.view.tuiComponent.tuiBaseImpl.TUI
-import Quoridor.model.boardComponent.boardBaseImpl.BoardCreator
-import Quoridor.view.guiComponent.guiBaseImpl.GUI
 import Quoridor.controller.controllerComponent.ControllerInterface
+import Quoridor.controller.controllerComponent.controllerBaseImpl.Controller
+import Quoridor.model.boardComponent.BoardInterface
+import Quoridor.model.boardComponent.boardBaseImpl.{Board, BoardCreator}
+import Quoridor.view.guiComponent.guiBaseImpl.GUI
+import Quoridor.view.tuiComponent.tuiBaseImpl.TUI
 
 @main
-def main(): Unit = {
-  val controller = new Controller(BoardCreator.createBoardWith2Players())
+def main(): Unit =
+  val board = Board.createBoardWith2Players()
+  given BoardInterface = board
+  val controller = new Controller
   given ControllerInterface = controller
   val tui = new TUI
   val gui = new GUI
 
-  val cliThread = new Thread(() => {
+  val cliThread = new Thread(() =>
     tui.start()
     System.exit(0)
-  })
+  )
   cliThread.setDaemon(true)
   cliThread.start()
 
   gui.main(Array.empty)
-
-}

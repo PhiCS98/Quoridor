@@ -1,6 +1,7 @@
 #pane {
     /*-fx-background-color: linear-gradient(to right top, #c900ff, #00ffe2);*/
     -fx-background-color: linear-gradient(to right top, #845EC2, #D65DB1,#FF6F91,#FF9671,#FFC75F,#F9F871);
+    -fx-padding: 3;
 }
 
 #unselectedWall {

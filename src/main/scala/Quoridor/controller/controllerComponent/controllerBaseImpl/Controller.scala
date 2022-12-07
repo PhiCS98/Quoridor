@@ -9,7 +9,7 @@ import Quoridor.util.{Observable, UndoManager}
 
 import scala.collection.mutable
 
-class Controller(var board: BoardInterface) extends ControllerInterface with Observable {
+class Controller(using var board: BoardInterface) extends ControllerInterface with Observable:
 
   private val undoManager: UndoManager = new UndoManager
   private var gameStatus: GameStatus.Value = GameStatus.MOVED
@@ -29,7 +29,9 @@ class Controller(var board: BoardInterface) extends ControllerInterface with Obs
 
   def isSet(row: Int, col: Int): Boolean = board.isSet(row, col)
 
-  def quit(): Boolean = { notifyObservers(QUIT); true }
+  def quit(): Boolean =
+    notifyObservers(QUIT)
+    true
 
   def movePawn(row: Int, col: Int): Unit =
     val player = returnPlayerById(currentPlayer)
@@ -54,20 +56,18 @@ class Controller(var board: BoardInterface) extends ControllerInterface with Obs
     cyclePlayers()
     notifyObservers(FIELDCHANGED)
 
-  def redo(): Unit = {
+  def redo(): Unit =
     undoManager.redoStep()
     cyclePlayers()
     notifyObservers(FIELDCHANGED)
-  }
 
   private def playerMove(row: Int, col: Int, player: Player): Unit =
     undoManager.doStep(new MoveCommand(row, col, player, this))
 
   private def returnPlayerById(playerID: Int): Player =
-    playerID match {
+    playerID match
       case 0 => Player1()
       case 1 => Player2()
-    }
 
   private def cyclePlayerAndSetWall(wallsInPossession: Int): Unit =
     playerWallCount.update(currentPlayer, wallsInPossession - 1)
@@ -75,4 +75,3 @@ class Controller(var board: BoardInterface) extends ControllerInterface with Obs
     notifyObservers(FIELDCHANGED)
 
   private def cyclePlayers(): Unit = currentPlayer = (currentPlayer + 1) % 2
-}
