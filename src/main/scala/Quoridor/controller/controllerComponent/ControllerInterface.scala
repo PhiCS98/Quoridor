@@ -26,6 +26,10 @@ trait ControllerInterface extends Observable {
 
   def quit(): Boolean
 
+  def save: Unit
+
+  def load: Unit
+
   def retrievePlayerAtPosition(row: Int, col: Int): Option[Player]
 
 }

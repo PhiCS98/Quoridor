@@ -4,16 +4,22 @@ import Quoridor.controller.controllerComponent.GameStatus.*
 import Quoridor.controller.controllerComponent.{ControllerInterface, GameStatus}
 import Quoridor.model.boardComponent.BoardInterface
 import Quoridor.model.boardComponent.boardBaseImpl.*
+import Quoridor.model.fileIoComponent.FileIOInterface
 import Quoridor.util.Event.{FIELDCHANGED, QUIT}
 import Quoridor.util.{Observable, UndoManager}
 
 import scala.collection.mutable
 
-class Controller(using var board: BoardInterface) extends ControllerInterface with Observable:
+class Controller(using var board: BoardInterface, val fileIO: FileIOInterface)
+    extends ControllerInterface
+    with Observable:
 
   private val undoManager: UndoManager = new UndoManager
+
   private var gameStatus: GameStatus.Value = GameStatus.MOVED
+
   private var currentPlayer: Int = 0
+
   private var playerWallCount = mutable.Map(0 -> 10, 1 -> 10)
 
   override def retrieveGameStatus: GameStatus = gameStatus
@@ -73,5 +79,9 @@ class Controller(using var board: BoardInterface) extends ControllerInterface wi
     playerWallCount.update(currentPlayer, wallsInPossession - 1)
     cyclePlayers()
     notifyObservers(FIELDCHANGED)
+
+  override def save: Unit = fileIO.save()
+
+  override def load: Unit = ???
 
   private def cyclePlayers(): Unit = currentPlayer = (currentPlayer + 1) % 2

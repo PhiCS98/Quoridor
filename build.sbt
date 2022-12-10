@@ -8,6 +8,7 @@ lazy val root = project
     scalaVersion := scala3Version,
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test",
+    libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.0-RC7",
     libraryDependencies ++= {
       lazy val osName = System.getProperty("os.name") match {
         case n if n.startsWith("Linux") => "linux"
