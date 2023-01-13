@@ -27,12 +27,16 @@ class GUI()(using controller: ControllerInterface) extends JFXApp3:
           top = new MenuBar:
             val redo = new MenuItem("redo")
             val undo = new MenuItem("undo")
+            val save = new MenuItem("save")
+            val load = new MenuItem("load")
 
             redo.onAction = _ => controller.redo()
             undo.onAction = _ => controller.undo()
+            save.onAction = _ => controller.save
+            load.onAction = _ => controller.load
 
             val editMenu = new Menu("edit")
-            editMenu.items = List(redo, undo)
+            editMenu.items = List(redo, undo, save, load)
             menus = List(editMenu)
 
           center = new GridPane():

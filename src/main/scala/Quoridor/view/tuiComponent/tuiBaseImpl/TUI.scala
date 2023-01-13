@@ -46,6 +46,7 @@ class TUI()(using controller: ControllerInterface) extends TUIInterface with Obs
       case "u" => controller.undo(); None
       case "r" => controller.redo(); None
       case "s" => controller.save; None
+      case "l" => controller.load; None
       case null => None
       case _ =>
         input.split(" ").toList match

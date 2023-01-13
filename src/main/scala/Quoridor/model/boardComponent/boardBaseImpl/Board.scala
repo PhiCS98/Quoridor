@@ -1,8 +1,12 @@
 package Quoridor.model.boardComponent.boardBaseImpl
 
 import Quoridor.model.*
+import Quoridor.model.boardComponent.boardBaseImpl.Board.encoder
 import Quoridor.model.boardComponent.boardBaseImpl.BoardCreator.createBoardWith2Players
 import Quoridor.model.boardComponent.{BoardInterface, boardBaseImpl}
+import io.circe.generic.semiauto.deriveEncoder
+import io.circe.syntax.EncoderOps
+import io.circe.{Decoder, Encoder, HCursor, Json}
 
 case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface:
 
@@ -56,10 +60,7 @@ case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface
       case _ => Left(BoardError.SomeWeirdError())
 
   def replaceCell(row: Int, col: Int, cell: Field): Board[Field] =
-    cell match
-      case _: PieceField =>
-        copy(rows.updated(row, rows(row).updated(col, cell)))
-      case _: WallField => copy(rows.updated(row, rows(row).updated(col, cell)))
+    copy(rows.updated(row, rows(row).updated(col, cell)))
 
   def movePawn(toRow: Int, toCol: Int, player: Player): Either[BoardError, Board[Field]] =
     if (returnBoardIndexes().contains((toRow, toCol)))
@@ -128,6 +129,7 @@ case class Board[A <: Field](rows: Vector[Vector[Field]]) extends BoardInterface
     temp
 
 object Board:
+
   def createEmptyBoard(): Board[Field] = BoardCreator.createEmptyBoard()
 
   def createBoardWith2Players(): Board[Field] =
@@ -135,3 +137,33 @@ object Board:
 
   def createBoardWith4Players(): Board[Field] =
     BoardCreator.createBoardWith4Players()
+
+  implicit val encoder: Encoder[Board[Field]] = (b: Board[Field]) =>
+    Json.obj(
+      "size" -> Json.fromInt(b.size),
+      "fields" -> Json.fromValues(
+        for {
+          row <- 0 until b.size
+          col <- 0 until b.size
+        } yield {
+          Json.obj("row" -> Json.fromInt(row), "col" -> Json.fromInt(col), "field" -> b.cell(row, col).asJson)
+        }))
+
+implicit val decoder: Decoder[Board[Field]] = (c: HCursor) =>
+  for {
+    size <- c.downField("size").as[Int]
+    fields <- c.downField("fields").as[List[fieldHelper]]
+  } yield {
+    var board = new Board[Field]((size + 1) / 2)
+    fields.foreach(f => board = board.replaceCell(f.row, f.col, f.field))
+    board
+  }
+
+case class fieldHelper(row: Int, col: Int, field: Field)
+
+implicit val fieldHelperDecoder: Decoder[fieldHelper] = (c: HCursor) =>
+  for {
+    row <- c.downField("row").as[Int]
+    col <- c.downField("col").as[Int]
+    field <- c.downField("field").as[Field]
+  } yield fieldHelper(row, col, field)

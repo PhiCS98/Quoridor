@@ -1,47 +1,30 @@
 package Quoridor.model.fileIoComponent.fileIoJsonImpl
 
 import Quoridor.model.boardComponent.BoardInterface
-import Quoridor.model.boardComponent.boardBaseImpl.{Field, Piece, PieceField}
+import Quoridor.model.boardComponent.BoardInterface.encoder
+import Quoridor.model.boardComponent.boardBaseImpl.{Board, Field, decoder}
 import Quoridor.model.fileIoComponent.FileIOInterface
-import play.api.libs.json.*
+import io.circe.*
+import io.circe.jawn.decodeFile
+import io.circe.syntax.*
+import java.io.{File, FileNotFoundException, FileReader, PrintWriter}
+import scala.io.*
+import scala.util.Success
+import scala.util.Failure
 
-import java.io.{File, PrintWriter}
-import scala.io.Source
+class FileIO extends FileIOInterface {
 
-class FileIO(using var board: BoardInterface) extends FileIOInterface {
+  override def load(): Board[Field] =
+    var b = Board.createBoardWith2Players()
+    val source: String = Source.fromFile("board.json").getLines().mkString
+    val json: Json = parser.parse(source).toTry match
+      case Success(value) => value
+      case Failure(exception) => Json.Null
+    b = json.as[Board[Field]].getOrElse(b)
+    b
 
-  implicit val fieldWrites: Writes[Field] = (o: Field) => Json.obj("content" -> o.content, "set" -> o.isSet)
-  implicit val pieceWrites: Writes[Piece] = (o: Piece) =>
-    Json.obj("player" -> o.returnPlayer().toString, "type" -> o.getClass.toString)
-
-  /* override def load: BoardInterface =
-    val source: String = Source.fromFile("board.json").getLines.mkString
-   val json: JsValue = Json.parse(source)
-   val size = (json \ "board" \ "size").get.toString.toInt
-    board = for (index <- 0 until size * size) {
-      println(index.toString)
-    }*/
-
-  /*
-  override def save(): Unit =
-    val pw = PrintWriter(new File("grid.json"))
-    pw.write(Json.prettyPrint(boardToJson(board)))
+  override def save(using board: BoardInterface): Unit =
+    val pw = new PrintWriter(new File("board.json"))
+    pw.write(board.asJson.spaces4)
     pw.close()
-
-  private def boardToJson(board: BoardInterfac,): JsObject = Json.obj(
-    "board" -> Json.obj(
-      "size" -> JsNumber(board.size),
-      "cells" -> Json.toJson(for {
-        row <- 0 until board.size
-        col <- 0 until board.size
-      } yield {
-        Json.obj("row" -> row, "col" -> col, "cell" -> Json.toJson(board.cell(row, col)))
-      })))
-
-
-   */
-
-  override def load: BoardInterface = ???
-
-  override def save(): Unit = ???
 }

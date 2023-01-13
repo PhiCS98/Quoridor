@@ -80,8 +80,11 @@ class Controller(using var board: BoardInterface, val fileIO: FileIOInterface)
     cyclePlayers()
     notifyObservers(FIELDCHANGED)
 
-  override def save: Unit = fileIO.save()
+  override def save: Unit = fileIO.save(board)
 
-  override def load: Unit = ???
+  override def load: Unit = {
+    board = fileIO.load()
+    notifyObservers(FIELDCHANGED)
+  }
 
   private def cyclePlayers(): Unit = currentPlayer = (currentPlayer + 1) % 2

@@ -1,9 +1,11 @@
 package Quoridor.model.boardComponent.boardBaseImpl
+import io.circe.syntax.*
+import io.circe.{Decoder, Encoder, HCursor, Json}
 
-sealed trait Field {
-  def content: Option[Piece]
+abstract class Field {
+  val content: Option[Piece]
 
-  def isSet: Boolean
+  def isSet: Boolean = content.isDefined
 
 }
 
@@ -31,4 +33,32 @@ case class WallField(content: Option[Piece]) extends Field {
       case Some(Wall(Player2())) => "\u25fc "
     }
   }
+}
+
+object Field {
+  implicit val encoder: Encoder[Field] = new Encoder[Field] {
+    final def apply(f: Field): Json = f match {
+      case _ @PieceField(content) =>
+        Json.obj(
+          "fieldType" -> Json.fromString("piece"),
+          "content" -> content.map(Encoder[Piece].apply).getOrElse(Json.Null))
+      case _ @WallField(content) =>
+        Json.obj(
+          "fieldType" -> Json.fromString("wall"),
+          "content" -> content.map(Encoder[Piece].apply).getOrElse(Json.Null))
+    }
+  }
+
+  implicit val decoder: Decoder[Field] = (c: HCursor) => {
+    for {
+      fieldType <- c.downField("fieldType").as[String]
+      content <- c.downField("content").as[Option[Piece]]
+    } yield {
+      fieldType match {
+        case "piece" => PieceField(content)
+        case "wall" => WallField(content)
+      }
+    }
+  }
+
 }
