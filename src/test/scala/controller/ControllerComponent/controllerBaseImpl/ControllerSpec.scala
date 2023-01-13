@@ -1,16 +1,23 @@
 package controller.ControllerComponent.controllerBaseImpl
 
-import controller.controllerComponent.controllerBaseImpl.Controller
-import model.boardComponent.boardBaseImpl.{Board, BoardCreator, PieceField}
+import Quoridor.controller.controllerComponent.controllerBaseImpl.Controller
+import Quoridor.model.boardComponent.boardBaseImpl.{Board, BoardCreator, PieceField}
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
+import Quoridor.model.boardComponent.BoardInterface
+import Quoridor.model.fileIoComponent.fileIoJsonImpl.FileIO
+import Quoridor.model.fileIoComponent.FileIOInterface
 
 class ControllerSpec extends AnyWordSpec with should.Matchers {
   "A Controller" when {
     "empty" should {
       val smallBoard = BoardCreator.createBoardWith2Players()
-      val controller = new Controller(smallBoard)
+
+      given BoardInterface = smallBoard
+      val fileIo = new FileIO()
+      given FileIOInterface = fileIo
+      val controller = new Controller()
       "handle undo/redo actions" in {
         controller.redo()
         controller.undo()
@@ -39,7 +46,7 @@ class ControllerSpec extends AnyWordSpec with should.Matchers {
       }
       "return a string representation of its board" in {
         val expected: String = smallBoard.toString()
-        val controller2 = new Controller(smallBoard)
+        val controller2 = new Controller()
         controller2.boardToString should be(expected)
       }
 
