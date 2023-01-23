@@ -7,10 +7,10 @@ import Quoridor.model.fileIoComponent.FileIOInterface
 import io.circe.*
 import io.circe.jawn.decodeFile
 import io.circe.syntax.*
+
 import java.io.{File, FileNotFoundException, FileReader, PrintWriter}
 import scala.io.*
-import scala.util.Success
-import scala.util.Failure
+import scala.util.{Failure, Success}
 
 class FileIO extends FileIOInterface {
 

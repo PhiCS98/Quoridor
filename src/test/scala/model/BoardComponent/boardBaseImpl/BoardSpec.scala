@@ -1,22 +1,20 @@
 package model.BoardComponent.boardBaseImpl
 
+import Quoridor.model.boardComponent.BoardInterface.encoder
 import Quoridor.model.boardComponent.boardBaseImpl
 import Quoridor.model.boardComponent.boardBaseImpl.*
+import Quoridor.model.boardComponent.boardBaseImpl.Board.encoder
+import Quoridor.model.boardComponent.boardBaseImpl.Piece.{decoder, encoder}
+import io.circe.*
+import io.circe.syntax.*
 import org.scalactic.{Equality, TolerantNumerics, TypeCheckedTripleEquals}
 import org.scalatest.EitherValues
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
-import io.circe.Json
-import io.circe.*
+
+import java.io.{File, PrintWriter}
 import scala.io.Source
-import scala.util.Success
-import scala.util.Failure
-import Quoridor.model.boardComponent.boardBaseImpl.Board.encoder
-import Quoridor.model.boardComponent.BoardInterface.encoder
-import io.circe.syntax.*
-import Quoridor.model.boardComponent.BoardInterface.encoder
-import Quoridor.model.boardComponent.boardBaseImpl.{Board, Field, decoder}
-import Quoridor.model.boardComponent.boardBaseImpl.Piece.{encoder, decoder}
+import scala.util.{Failure, Success}
 
 class BoardSpec extends AnyWordSpec with should.Matchers with TypeCheckedTripleEquals with EitherValues {
 
@@ -79,7 +77,8 @@ class BoardSpec extends AnyWordSpec with should.Matchers with TypeCheckedTripleE
 
     "should be able to encode and decode to json" in {
       val board = new Board[Field](3)
-      val source: String = Source.fromFile("expected.json").getLines().mkString
+      val source: String =
+        Source.fromFile("./src/test/scala/model/BoardComponent/boardBaseImpl/expected.json").getLines().mkString
       val expected: Json = parser.parse(source).toTry match
         case Success(value) => value
         case Failure(exception) => Json.Null
@@ -271,40 +270,4 @@ class BoardSpec extends AnyWordSpec with should.Matchers with TypeCheckedTripleE
     }
   }
 
-  "A piece" should {
-    "have a method to return the player of said piece" in {
-      val pawn = boardBaseImpl.Pawn(Player1())
-      val wall = boardBaseImpl.Wall(Player1())
-      val expected = Player1()
-      val actual = pawn.returnPlayer()
-      val actual2 = wall.returnPlayer()
-      actual shouldBe expected
-      actual2 shouldBe expected
-    }
-    "be able to encode/decode to/from json" in {
-      val board = Board.createBoardWith2Players().replaceCell(1, 8, WallField(Some(Wall(Player2()))))
-      val pawn = board.cell(0, 8).content.get
-      val wall = board.cell(1, 8).content.get
-      val json: Json = parser
-        .parse("""{
-                    "type" : "pawn",
-                    "player" : {
-                        "playerName" : "player1"
-                    }
-                }""")
-        .getOrElse(Json.Null)
-
-      pawn.asJson should be(json)
-
-      val json2: Json = parser
-        .parse("""{
-                    "type" : "wall",
-                    "player" : {
-                        "playerName" : "player2"
-                    }
-                }""")
-        .getOrElse(Json.Null)
-      wall.asJson should be(json2)
-    }
-  }
 }

@@ -1,0 +1,4796 @@
+[info] welcome to sbt 1.8.0 (Homebrew Java 19.0.1)
+[info] loading global plugins from /Users/philipptolksdorf/.sbt/1.0/plugins
+[info] loading settings for project quoridor-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/philipptolksdorf/github/Quoridor/project/project/project
+[info] loading settings for project quoridor-build-build from metals.sbt ...
+[info] loading project definition from /Users/philipptolksdorf/github/Quoridor/project/project
+[success] Generated .bloop/quoridor-build-build.json
+[success] Total time: 0 s, completed 23 Jan 2023, 12:00:22
+[info] loading settings for project quoridor-build from metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/philipptolksdorf/github/Quoridor/project
+[success] Generated .bloop/quoridor-build.json
+[success] Total time: 0 s, completed 23 Jan 2023, 12:00:23
+[info] loading settings for project root from build.sbt ...
+[info] set current project to Quoridor (in build file:/Users/philipptolksdorf/github/Quoridor/)
+[success] Total time: 0 s, completed 23 Jan 2023, 12:00:23
+[info] Defining ThisBuild / coverageEnabled
+[info] The new value will be used by Compile / compile / scalacOptions, libraryDependencies
+[info] Reapplying settings...
+[info] set current project to Quoridor (in build file:/Users/philipptolksdorf/github/Quoridor/)
+[info] compiling 25 Scala sources to /Users/philipptolksdorf/github/Quoridor/target/scala-3.2.0/classes ...
+[warn] -- [E029] Pattern Match Exhaustivity Warning: /Users/philipptolksdorf/github/Quoridor/src/main/scala/Quoridor/model/boardComponent/boardBaseImpl/Field.scala:17:4 
+[warn] 17 |    content match {
+[warn]    |    ^^^^^^^
+[warn]    |    match may not be exhaustive.
+[warn]    |
+[warn]    |    It would fail on pattern case: Some(_)
+[warn]    |
+[warn]    | longer explanation available when compiling with `-explain`
+[warn] -- [E029] Pattern Match Exhaustivity Warning: /Users/philipptolksdorf/github/Quoridor/src/main/scala/Quoridor/model/boardComponent/boardBaseImpl/Field.scala:30:4 
+[warn] 30 |    content match {
+[warn]    |    ^^^^^^^
+[warn]    |    match may not be exhaustive.
+[warn]    |
+[warn]    |    It would fail on pattern case: Some(_)
+[warn]    |
+[warn]    | longer explanation available when compiling with `-explain`
+[warn] -- [E029] Pattern Match Exhaustivity Warning: /Users/philipptolksdorf/github/Quoridor/src/main/scala/Quoridor/view/guiComponent/guiBaseImpl/Field.scala:28:10 
+[warn] 28 |          value match {
+[warn]    |          ^^^^^
+[warn]    |match may not be exhaustive.
+[warn]    |
+[warn]    |It would fail on pattern case: boardBaseImpl.Player3(), boardBaseImpl.Player4()
+[warn]    |
+[warn]    | longer explanation available when compiling with `-explain`
+[warn] -- Unchecked Warning: /Users/philipptolksdorf/github/Quoridor/src/main/scala/Quoridor/model/boardComponent/BoardInterface.scala:36:11 
+[warn] 36 |      case b: Board[Field] => b.asJson
+[warn]    |           ^
+[warn]    |    the type test for Quoridor.model.boardComponent.boardBaseImpl.Board[
+[warn]    |      Quoridor.model.boardComponent.boardBaseImpl.Field
+[warn]    |    ] cannot be checked at runtime
+[warn] four warnings found
+[info] done compiling
+[info] compiling 11 Scala sources to /Users/philipptolksdorf/github/Quoridor/target/scala-3.2.0/test-classes ...
+[info] done compiling
+[info] GameStatusSpec:
+[info] A GameStatus object
+[info] - should have a method to return the string of a given status
+[info] BoardCreatorSpec:
+[info] A BoardCreator
+[info] - should have a method to create a new Quoridorboard of size 9 with 2 players on it
+[info] - should have a method to create a new Quoridorboard of size 9 with 4 players on it
+[info] BoardInterfaceSpec:
+[info] Encoding a Board[Field]
+[info] - should encode to json using the encoder provided in the companion object
+[info] FileIOSpec:
+[info] A FileIO
+[info] - should be able to save and load a board
+[info] PieceSpec:
+[info] A piece
+[info] - should have a method to return the player of said piece
+[info] - should be able to encode to json
+[info] - should be able to be encoded from json
+[info] ObservableSpec:
+[info] An Observable
+[info] - should add an Observer to its list of subscribers
+[info] - should remove an Observer from its list of subscribers
+[info] - should notify all its subscribers when an event occurs
+[info] BoardSpec:
+[info] A Quoridor board
+[info] - should have a method to return its size
+[info] - should have a method to return a new empty board
+[info] - should have a method to return a new board with 4 players
+[info] - should have a constructor to create a quoridor board
+[info] - should have a method to replace a piece cell of the board
+[info] - should have a method to return the possible player of a piece at a given position 
+[info] - should should be able to encode and decode to json
+[info]   should have a method to place a Wall on the board
+[info]   - when correct parameters get passed to it
+[info]   - when return the correct board when placing a wall on the lower edge
+[info]   - when return the correct board when placing a wall on the right edge
+[info]   - when return a BoardError if the wrong parameters get passed to it
+[info]   should be able to move a players pawn or return a BoardError
+[info]   - when given the right parameters of a piece field
+[info]   - when trying to move to an already occupied field
+[info]   - when moving in a direction blocked by a wall
+[info]   - when when placing a wall on an occupied field
+[info]   - when dealing with wrong coordinates 
+[info]   - when dealing with extremely wrong coordinates 
+[info]   - when moving a pawn farther than allowed 
+[info]   - when trying to move to an occupied Field
+[info] - should have a method to get the contents of a cell with x and y coordinates
+[info] - should have a method to return a row of a given index
+[info] - should have a toString method that returns a string representation of the board
+[info] FileIOSpec:
+[info] A FileIO
+[info] - should be able to save and load a board from and to json
+[info] PlayerSpec:
+[info] A player
+[info] - should have a method to encode itself to json
+[info] - should have a method to decode json to a player object
+[info] FieldSpec:
+[info] Field
+[info] - should return true when the content is set
+[info] - should return false when the content is not set
+[info] Field companion object
+[info] - should encode a PieceField correctly
+[info] - should encode a WallField without content correctly
+[info] - should encode a WallField with content correctly
+[info] - should decode a json string correctly
+[info] - should throw a DecodingFailure when decoding wrong json
+[info] - should handle  decoding wrong json to PieceField
+[info] - should handle decoding wrong json to WallField
+[info] ControllerSpec:
+[info] A Controller
+[info]   when empty
+[info]   - should handle undo/redo actions
+[info]   - should return a string representation of its board
+[info]   - should have a method to return the size of the board associated with the controller
+[info]   - should have a method to return a field of the board associated with the controller
+[info]   - should have a method to check if a field of the board associated with the controller is set
+[info]   - should have a method to retreive the player of a piece at a given position
+[info]   - should have a method to retrieve the game status as a string
+[info]   - should have a method to save its board to a json file *** FAILED ***
+[info]     null was not equal to {
+[info]       "size" : 17,
+[info]       "fields" : [
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : {
+[info]               "type" : "pawn",
+[info]               "player" : {
+[info]                 "playerName" : "player1"
+[info]               }
+[info]             }
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 0,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 1,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 2,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 3,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 4,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 5,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 6,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 7,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 8,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 9,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 10,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 11,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 12,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 13,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 14,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 15,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 0,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 1,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 2,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 3,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 4,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 5,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 6,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 7,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 8,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : {
+[info]               "type" : "pawn",
+[info]               "player" : {
+[info]                 "playerName" : "player2"
+[info]               }
+[info]             }
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 9,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 10,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 11,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 12,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 13,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 14,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 15,
+[info]           "field" : {
+[info]             "fieldType" : "wall",
+[info]             "content" : null
+[info]           }
+[info]         },
+[info]         {
+[info]           "row" : 16,
+[info]           "col" : 16,
+[info]           "field" : {
+[info]             "fieldType" : "piece",
+[info]             "content" : null
+[info]           }
+[info]         }
+[info]       ]
+[info]     } (ControllerSpec.scala:90)
+[info]     Analysis:
+[info]     Json$JNull$(value: -> object[size -> 17,fields -> [
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : {
+[info]         "type" : "pawn",
+[info]         "player" : {
+[info]           "playerName" : "player1"
+[info]         }
+[info]       }
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 0,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 1,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 2,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 3,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 4,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 5,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 6,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 7,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 8,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 9,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 10,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 11,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 12,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 13,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 14,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 15,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 0,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 1,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 2,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 3,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 4,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 5,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 6,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 7,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 8,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : {
+[info]         "type" : "pawn",
+[info]         "player" : {
+[info]           "playerName" : "player2"
+[info]         }
+[info]       }
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 9,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 10,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 11,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 12,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 13,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 14,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 15,
+[info]     "field" : {
+[info]       "fieldType" : "wall",
+[info]       "content" : null
+[info]     }
+[info]   },
+[info]   {
+[info]     "row" : 16,
+[info]     "col" : 16,
+[info]     "field" : {
+[info]       "fieldType" : "piece",
+[info]       "content" : null
+[info]     }
+[info]   }
+[info] ]])
+[info]   - should have a method to load a board from json
+[info]   - should have a method to notify Observers to quit
+[info] Run completed in 435 milliseconds.
+[info] Total number of tests run: 55
+[info] Suites: completed 11, aborted 0
+[info] Tests: succeeded 54, failed 1, canceled 0, ignored 0, pending 0
+[info] *** 1 TEST FAILED ***
+[error] Failed tests:
+[error] 	controller.ControllerComponent.controllerBaseImpl.ControllerSpec
+[error] (Test / test) sbt.TestsFailedException: Tests unsuccessful
+[error] Total time: 10 s, completed 23 Jan 2023, 12:00:34

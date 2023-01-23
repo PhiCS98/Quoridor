@@ -5,8 +5,8 @@ import Quoridor.controller.controllerComponent.controllerBaseImpl.Controller
 import Quoridor.model.boardComponent.BoardInterface
 import Quoridor.model.boardComponent.boardBaseImpl.{Board, BoardCreator}
 import Quoridor.model.fileIoComponent.FileIOInterface
-//import Quoridor.model.fileIoComponent.fileIoXmlImpl.FileIO
-import Quoridor.model.fileIoComponent.fileIoJsonImpl.FileIO
+import Quoridor.model.fileIoComponent.fileIoXmlImpl.FileIO
+//import Quoridor.model.fileIoComponent.fileIoJsonImpl.FileIO
 import Quoridor.view.guiComponent.guiBaseImpl.GUI
 import Quoridor.view.tuiComponent.tuiBaseImpl.TUI
 

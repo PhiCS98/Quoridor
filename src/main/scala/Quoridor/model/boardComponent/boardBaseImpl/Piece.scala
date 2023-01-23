@@ -18,17 +18,14 @@ object Piece {
     case pawn: Pawn =>
       Json.obj("type" -> "pawn".asJson, "player" -> pawn.returnPlayer().asJson)
   }
-  implicit val decoder: Decoder[Piece] = new Decoder[Piece] {
-    final def apply(c: HCursor): Decoder.Result[Piece] =
-      for {
-        pieceType <- c.downField("type").as[String]
-        player <- c.downField("player").as[Player]
-      } yield {
-        pieceType match {
-          case "wall" => Wall(player)
-          case "pawn" => Pawn(player)
-          case _ => null
-        }
+  implicit val decoder: Decoder[Piece] = (c: HCursor) =>
+    for {
+      pieceType <- c.downField("type").as[String]
+      player <- c.downField("player").as[Player]
+    } yield {
+      pieceType match {
+        case "wall" => Wall(player)
+        case "pawn" => Pawn(player)
       }
-  }
+    }
 }
