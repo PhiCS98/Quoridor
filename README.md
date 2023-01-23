@@ -4,7 +4,7 @@ Quoridor is an implementation of the popular board game of the same name, writte
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/[PhiCS98]/Quoridor.git`
+1. Clone the repository: `git clone https://github.com/PhiCS98/Quoridor.git`
 2. Navigate to the project directory: `cd Quoridor`
 3. Compile the code: `sbt compile`
 4. Run the game: `sbt run`
