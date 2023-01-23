@@ -1,17 +1,22 @@
 package model.BoardComponent.boardBaseImpl
 
-import model.boardComponent.boardBaseImpl
-import model.boardComponent.boardBaseImpl.*
+import Quoridor.model.boardComponent.BoardInterface.encoder
+import Quoridor.model.boardComponent.boardBaseImpl
+import Quoridor.model.boardComponent.boardBaseImpl.*
+import Quoridor.model.boardComponent.boardBaseImpl.Board.encoder
+import Quoridor.model.boardComponent.boardBaseImpl.Piece.{decoder, encoder}
+import io.circe.*
+import io.circe.syntax.*
 import org.scalactic.{Equality, TolerantNumerics, TypeCheckedTripleEquals}
 import org.scalatest.EitherValues
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
 
-class BoardSpec
-    extends AnyWordSpec
-    with should.Matchers
-    with TypeCheckedTripleEquals
-    with EitherValues {
+import java.io.{File, PrintWriter}
+import scala.io.Source
+import scala.util.{Failure, Success}
+
+class BoardSpec extends AnyWordSpec with should.Matchers with TypeCheckedTripleEquals with EitherValues {
 
   "A Quoridor board" should {
 
@@ -38,36 +43,11 @@ class BoardSpec
       val actual = new Board(3)
       val expected = Board(
         Vector(
-          Vector(
-            PieceField(None),
-            WallField(None),
-            PieceField(None),
-            WallField(None),
-            PieceField(None)),
-          Vector(
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None)),
-          Vector(
-            PieceField(None),
-            WallField(None),
-            PieceField(None),
-            WallField(None),
-            PieceField(None)),
-          Vector(
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None)),
-          Vector(
-            PieceField(None),
-            WallField(None),
-            PieceField(None),
-            WallField(None),
-            PieceField(None))))
+          Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+          Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+          Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+          Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+          Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None))))
       actual should ===(expected)
     }
 
@@ -82,31 +62,28 @@ class BoardSpec
             PieceField(Some(boardBaseImpl.Pawn(Player1()))),
             WallField(None),
             PieceField(None)),
-          Vector(
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None)),
-          Vector(
-            PieceField(None),
-            WallField(None),
-            PieceField(None),
-            WallField(None),
-            PieceField(None)),
-          Vector(
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None),
-            WallField(None)),
-          Vector(
-            PieceField(None),
-            WallField(None),
-            PieceField(None),
-            WallField(None),
-            PieceField(None))))
+          Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+          Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+          Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+          Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None))))
       actual should ===(expected)
+    }
+    "have a method to return the possible player of a piece at a given position " in {
+      var board = Board.createBoardWith2Players()
+      board.returnPlayerOfPosition(0, 8) should ===(Some(Player1()))
+      board = Board.createEmptyBoard()
+      board.returnPlayerOfPosition(0, 8) should ===(None)
+    }
+
+    "should be able to encode and decode to json" in {
+      val board = new Board[Field](3)
+      val source: String =
+        Source.fromFile("./src/test/scala/model/BoardComponent/boardBaseImpl/expected.json").getLines().mkString
+      val expected: Json = parser.parse(source).toTry match
+        case Success(value) => value
+        case Failure(exception) => Json.Null
+      board.asJson should ===(expected)
+      board.asJson.as[Board[Field]].value should be(board)
     }
 
     "have a method to place a Wall on the board" when {
@@ -135,18 +112,8 @@ class BoardSpec
                 PieceField(None),
                 WallField(None),
                 PieceField(None)),
-              Vector(
-                WallField(None),
-                WallField(None),
-                WallField(None),
-                WallField(None),
-                WallField(None)),
-              Vector(
-                PieceField(None),
-                WallField(None),
-                PieceField(None),
-                WallField(None),
-                PieceField(None))))
+              Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+              Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None))))
         actual should ===(expected)
       }
 
@@ -155,30 +122,10 @@ class BoardSpec
         val actual = board.placeWall(4, 1, Player1()).value
         val expected = Board[Field](
           Vector(
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None)),
-            Vector(
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None)),
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None)),
-            Vector(
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None)),
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+            Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+            Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
             Vector(
               PieceField(None),
               WallField(Some(Wall(Player1()))),
@@ -193,36 +140,16 @@ class BoardSpec
         val actual = board.placeWall(1, 4, Player1()).value
         val expected = Board[Field](
           Vector(
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None)),
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
             Vector(
               WallField(None),
               WallField(None),
               WallField(None),
               WallField(None),
               WallField(Some(Wall(Player1())))),
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None)),
-            Vector(
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None)),
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None))))
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+            Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None))))
 
         actual should ===(expected)
       }
@@ -242,36 +169,16 @@ class BoardSpec
         val actual = board.movePawn(2, 2, Player1()).getOrElse(board)
         val expected = Board[Field](
           Vector(
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None)),
-            Vector(
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None)),
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None)),
+            Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
             Vector(
               PieceField(None),
               WallField(None),
               PieceField(Some(boardBaseImpl.Pawn(Player1()))),
               WallField(None),
               PieceField(None)),
-            Vector(
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None),
-              WallField(None)),
-            Vector(
-              PieceField(None),
-              WallField(None),
-              PieceField(None),
-              WallField(None),
-              PieceField(None))))
+            Vector(WallField(None), WallField(None), WallField(None), WallField(None), WallField(None)),
+            Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None))))
         actual should ===(expected)
       }
 
@@ -341,12 +248,7 @@ class BoardSpec
     "have a method to return a row of a given index" in {
       val board = new Board[Field](3)
       val actual = board.row(0)
-      val expected = Vector(
-        PieceField(None),
-        WallField(None),
-        PieceField(None),
-        WallField(None),
-        PieceField(None))
+      val expected = Vector(PieceField(None), WallField(None), PieceField(None), WallField(None), PieceField(None))
       actual should ===(expected)
     }
 
@@ -368,15 +270,4 @@ class BoardSpec
     }
   }
 
-  "A piece" should {
-    "have a method to return the player of said piece" in {
-      val pawn = boardBaseImpl.Pawn(Player1())
-      val wall = boardBaseImpl.Wall(Player1())
-      val expected = Player1()
-      val actual = pawn.returnPlayer()
-      val actual2 = wall.returnPlayer()
-      actual shouldBe expected
-      actual2 shouldBe expected
-    }
-  }
 }

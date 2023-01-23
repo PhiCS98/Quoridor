@@ -1,7 +1,7 @@
 package controller.ControllerComponent.controllerBaseImpl
 
-import controller.controllerComponent.GameStatus
-import GameStatus.{GameStatus, IDLE}
+import Quoridor.controller.controllerComponent.GameStatus
+import Quoridor.controller.controllerComponent.GameStatus.{GameStatus, IDLE}
 import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
