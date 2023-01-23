@@ -1,22 +1,12 @@
 package Quoridor.model.fileIoComponent.fileIoXmlImpl
 
-import Quoridor.model.fileIoComponent.FileIOInterface
-import scala.xml.NodeSeq
 import Quoridor.model.boardComponent.BoardInterface
-import Quoridor.model.boardComponent.boardBaseImpl.Board
-import Quoridor.model.boardComponent.boardBaseImpl.Field
-import java.io.PrintWriter
-import java.io.File
-import scala.xml.PrettyPrinter
-import scala.xml.XML
-import Quoridor.model.boardComponent.boardBaseImpl.Pawn
-import Quoridor.model.boardComponent.boardBaseImpl.Player1
-import Quoridor.model.boardComponent.boardBaseImpl.Piece
-import Quoridor.model.boardComponent.boardBaseImpl.Player2
-import Quoridor.model.boardComponent.boardBaseImpl.Wall
+import Quoridor.model.boardComponent.boardBaseImpl.{Board, Field, Pawn, Piece, PieceField, Player1, Player2, Wall, WallField}
+import Quoridor.model.fileIoComponent.FileIOInterface
 import Quoridor.view.guiComponent.guiBaseImpl.Wall
-import Quoridor.model.boardComponent.boardBaseImpl.PieceField
-import Quoridor.model.boardComponent.boardBaseImpl.WallField
+
+import java.io.{File, PrintWriter}
+import scala.xml.{NodeSeq, PrettyPrinter, XML}
 
 class FileIO extends FileIOInterface {
 
@@ -25,7 +15,7 @@ class FileIO extends FileIOInterface {
     val file = scala.xml.XML.loadFile("board.xml")
     val size = (file \ "@size").text.toInt
 
-    val fieldNodes = (file \\ "field")
+    val fieldNodes = file \\ "field"
     for (field <- fieldNodes) {
       val row: Int = (field \ "@row").text.toInt
       val col: Int = (field \ "@col").text.toInt
@@ -45,15 +35,15 @@ class FileIO extends FileIOInterface {
 
   override def save(using board: BoardInterface): Unit = saveString
 
-  def saveString(using board: BoardInterface): Unit = {
+  private def saveString(using board: BoardInterface): Unit = {
     val pw = new PrintWriter(new File("board.xml"))
     val prettyPrinter = new PrettyPrinter(120, 4)
     val xml = prettyPrinter.format(boardToXml(board))
     pw.write(xml)
-    pw.close
+    pw.close()
   }
 
-  def boardToXml(board: BoardInterface) = {
+  private def boardToXml(board: BoardInterface) = {
     <board size={board.size.toString}>
     {
       for {
@@ -64,8 +54,8 @@ class FileIO extends FileIOInterface {
     </board>
   }
 
-  def fieldToXml(row: Int, col: Int, board: BoardInterface) = {
-    <field row={row.toString} col={col.toString} content={board.cell(row, col).content.toString()}>
+  private def fieldToXml(row: Int, col: Int, board: BoardInterface) = {
+    <field row={row.toString} col={col.toString} content={board.cell(row, col).content.toString}>
     </field>
   }
 

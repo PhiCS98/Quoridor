@@ -20,18 +20,15 @@ object Player {
     case player3: Player3 => Json.obj("playerName" -> "player3".asJson)
     case player4: Player4 => Json.obj("playerName" -> "player4".asJson)
   }
-  implicit val decoder: Decoder[Player] = new Decoder[Player] {
-    final def apply(c: HCursor): Decoder.Result[Player] =
-      for {
-        playerType <- c.downField("playerName").as[String]
-      } yield {
-        playerType match {
-          case "player1" => Player1()
-          case "player2" => Player2()
-          case "player3" => Player3()
-          case "player4" => Player4()
-          case _ => throw new Exception("Unknown player type")
-        }
+  implicit val decoder: Decoder[Player] = (c: HCursor) =>
+    for {
+      playerType <- c.downField("playerName").as[String]
+    } yield {
+      playerType match {
+        case "player1" => Player1()
+        case "player2" => Player2()
+        case "player3" => Player3()
+        case "player4" => Player4()
       }
-  }
+    }
 }

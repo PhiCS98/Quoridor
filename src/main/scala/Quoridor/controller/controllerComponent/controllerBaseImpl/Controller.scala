@@ -47,7 +47,7 @@ class Controller(using var board: BoardInterface, val fileIO: FileIOInterface)
       cyclePlayers()
       gameStatus = MOVED
       notifyObservers(FIELDCHANGED)
-    else gameStatus = GameStatus.MOVED
+      gameStatus = GameStatus.MOVED
 
   def setWall(row: Int, column: Int): Unit =
     val wallsInPossession = playerWallCount.getOrElseUpdate(currentPlayer, 0)
@@ -55,7 +55,6 @@ class Controller(using var board: BoardInterface, val fileIO: FileIOInterface)
       val player = returnPlayerById(currentPlayer)
       undoManager.doStep(new PlaceCommand(row, column, player, this))
       cyclePlayerAndSetWall(wallsInPossession)
-    else gameStatus = NO_MORE_WALLS
 
   def undo(): Unit =
     undoManager.undoStep()

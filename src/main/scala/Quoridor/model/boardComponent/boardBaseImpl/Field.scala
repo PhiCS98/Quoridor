@@ -1,6 +1,6 @@
 package Quoridor.model.boardComponent.boardBaseImpl
 import io.circe.syntax.*
-import io.circe.{Decoder, Encoder, HCursor, Json}
+import io.circe.{Decoder, DecodingFailure, Encoder, HCursor, Json}
 
 abstract class Field {
   val content: Option[Piece]
@@ -36,29 +36,47 @@ case class WallField(content: Option[Piece]) extends Field {
 }
 
 object Field {
-  implicit val encoder: Encoder[Field] = new Encoder[Field] {
-    final def apply(f: Field): Json = f match {
-      case _ @PieceField(content) =>
-        Json.obj(
-          "fieldType" -> Json.fromString("piece"),
-          "content" -> content.map(Encoder[Piece].apply).getOrElse(Json.Null))
-      case _ @WallField(content) =>
-        Json.obj(
-          "fieldType" -> Json.fromString("wall"),
-          "content" -> content.map(Encoder[Piece].apply).getOrElse(Json.Null))
+  implicit val fieldEncoder: Encoder[Field] =
+    Encoder.instance[Field] {
+      case pieceField: PieceField => pieceFieldEncoder(pieceField)
+      case wallField: WallField => wallFieldEncoder(wallField)
     }
-  }
 
-  implicit val decoder: Decoder[Field] = (c: HCursor) => {
+  implicit val fieldDecoder: Decoder[Field] =
+    Decoder.instance[Field](cursor =>
+      cursor.downField("fieldType").as[String].flatMap {
+        case "piece" => pieceFieldDecoder(cursor)
+        case "wall" => wallFieldDecoder(cursor)
+        case _ => Left(DecodingFailure("Invalid fieldType", cursor.history))
+      })
+
+  implicit val pieceFieldEncoder: Encoder[PieceField] =
+    (a: PieceField) =>
+      Json.obj(
+        "fieldType" -> Json.fromString("piece"),
+        "content" -> a.content.map(Encoder[Piece].apply).getOrElse(Json.Null))
+
+  implicit val pieceFieldDecoder: Decoder[PieceField] = (c: HCursor) =>
     for {
       fieldType <- c.downField("fieldType").as[String]
       content <- c.downField("content").as[Option[Piece]]
     } yield {
-      fieldType match {
-        case "piece" => PieceField(content)
-        case "wall" => WallField(content)
-      }
+      if (fieldType == "piece") PieceField(content)
+      else PieceField(None)
     }
-  }
 
+  implicit val wallFieldEncoder: Encoder[WallField] =
+    (a: WallField) =>
+      Json.obj(
+        "fieldType" -> Json.fromString("wall"),
+        "content" -> a.content.map(Encoder[Piece].apply).getOrElse(Json.Null))
+
+  implicit val wallFieldDecoder: Decoder[WallField] = (c: HCursor) =>
+    for {
+      fieldType <- c.downField("fieldType").as[String]
+      content <- c.downField("content").as[Option[Piece]]
+    } yield {
+      if (fieldType == "wall") WallField(content)
+      else WallField(None)
+    }
 }
