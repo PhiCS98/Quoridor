@@ -3,7 +3,7 @@
 [![Scala CI](https://github.com/PhiCS98/Quoridor/actions/workflows/scala.yml/badge.svg)](https://github.com/PhiCS98/Quoridor/actions/workflows/scala.yml)
 [![codecov](https://codecov.io/gh/PhiCS98/Quoridor/branch/dev/graph/badge.svg?token=UC46PW3DMN)](https://codecov.io/gh/PhiCS98/Quoridor)
 ![RepoSize](https://img.shields.io/github/repo-size/PhiCS98/Quoridor)
-![Lines of Code](https://tokei.rs/b1/github/PhisCS98/Quoridor)
+![Lines of Code](https://tokei.rs/b1/github/PhiCS98/Quoridor)
 
 Quoridor is an implementation of the popular board game of the same name, written in Scala 3 and using Scalafx for the GUI. The architecture of the program follows the Model-View-Controller pattern.
 
