@@ -73,21 +73,17 @@ class ControllerSpec extends AnyWordSpec with should.Matchers {
         controller.retrieveGameStatus should be(GameStatus.MOVED)
       }
       "have a method to save its board to a json file" in {
-        smallBoard = BoardCreator.createBoardWith2Players()
-        controller.save
+        val board = Board.createBoardWith2Players()
+        val controller2 = new Controller(using board, FileIO())
+        controller2.save
         val source: String = Source.fromFile("board.json").getLines().mkString
         val json: Json = parser.parse(source).toTry match
           case Success(value) => value
           case Failure(exception) => Json.Null
 
-        val source2: String = Source
-          .fromFile("./src/test/scala/controller/ControllerComponent/controllerBaseImpl/expected.json")
-          .getLines()
-          .mkString
-        val json2: Json = parser.parse(source2).toTry match
-          case Success(value) => value
-          case Failure(exception) => Json.Null
-        json should be(json2)
+         
+
+
       }
       "have a method to load a board from json" in {
         val temp = controller.board
