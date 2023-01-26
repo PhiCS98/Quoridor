@@ -27,7 +27,7 @@ The goal of the game is to reach the opposite side of the board before your oppo
 
 ## Game Screenshots
 
-![screenshot1](https://imgur.com/a/5hM3xab)
+![screenshot1](https://imgur.com/odULKd1)
 
 ## Contributing
 
