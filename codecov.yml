@@ -1,2 +1,2 @@
 ignore:
-  - "Quoridor/src/main/scala/Quoridor/view"
+  - "**/view"
