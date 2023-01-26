@@ -1,7 +1,7 @@
 
 # Quoridor
 [![Scala CI](https://github.com/PhiCS98/Quoridor/actions/workflows/scala.yml/badge.svg)](https://github.com/PhiCS98/Quoridor/actions/workflows/scala.yml)
-[![codecov](https://codecov.io/gh/PhiCS98/Quoridor/branch/dev/graph/badge.svg?token=UC46PW3DMN)](https://codecov.io/gh/PhiCS98/Quoridor)
+[![codecov](https://codecov.io/gh/PhiCS98/Quoridor/branch/master/graph/badge.svg?token=UC46PW3DMN)](https://codecov.io/gh/PhiCS98/Quoridor)
 ![RepoSize](https://img.shields.io/github/repo-size/PhiCS98/Quoridor)
 ![Lines of Code](https://tokei.rs/b1/github/PhiCS98/Quoridor)
 
